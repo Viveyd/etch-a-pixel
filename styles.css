@@ -69,6 +69,16 @@ main > .workspace{
     border: 0;
 }
 
+.color-con > span {
+    display: block;
+}
+.color-con > input[type="color"] {
+    width: 85px;
+    padding: 0;
+    border: 0;
+    background-color: transparent;
+}
+
 
 
 
