@@ -45,8 +45,25 @@ main > .workspace{
 .workspace > .tools{
     flex-basis: 200px;
     font-family: 'Monda', sans-serif;
+    box-sizing: border-box;
+    padding: 16px;
 }
 
+.file-settings label{
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.file-settings .controls{
+    display: flex;
+    justify-content: space-between;
+}
+
+.file-settings .controls > * {
+    font-weight: bold;
+    background-color: transparent;
+    border: 0;
+}
 
 .github-con{
     display: flex;
