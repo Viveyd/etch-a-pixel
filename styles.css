@@ -1,3 +1,6 @@
+
+
+
 html{
     height: 100vh;
 }
@@ -23,6 +26,7 @@ main{
 main > .main-heading{
     width: 925px;
     margin: 0;
+    font-family: 'Limelight', cursive;
 }
 
 main > .workspace{
@@ -42,6 +46,7 @@ main > .workspace{
 
 .workspace > .tools{
     flex-basis: 200px;
+    font-family: 'Monda', sans-serif;
 }
 
 @media screen and (max-width: 1199px) {
