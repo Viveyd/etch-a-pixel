@@ -8,7 +8,6 @@ body{
     background-color: red;
     display: flex;
     justify-content: center;
-
 }
 
 main{
@@ -43,4 +42,67 @@ main > .workspace{
 
 .workspace > .tools{
     flex-basis: 200px;
+}
+
+@media screen and (max-width: 1199px) {
+    body{
+        background-color: lightgreen;
+    }
+
+    main > .main-heading{
+        width: 800px;
+        margin: 0;
+    }
+    
+    main > .workspace{
+       width: 800px;
+       flex-basis: 600px;
+       gap: 25px;
+       display: flex;
+    }
+    
+    .workspace > .canvas{
+        flex-basis: 600px;
+    }
+    
+    .workspace > .tools{
+        flex-basis: 200px;
+    }
+}
+
+@media screen and (max-width: 1049px) {
+    body{
+        background-color: lightgreen;
+    }
+
+    main > .main-heading{
+        width: 650px;
+        margin: 0;
+    }
+    
+    main > .workspace{
+       width: 650px;
+       flex-basis: 500px;
+       gap: 25px;
+       display: flex;
+    }
+    
+    .workspace > .canvas{
+        flex-basis: 500px;
+    }
+    
+    .workspace > .tools{
+        flex-basis: 150px;
+    }
+}
+
+@media screen and (max-width: 879px) {
+    body{
+        background-color: red;
+        align-items: center;
+    }
+    main{
+        height: 80%;
+        width: 100%;
+    }
 }
