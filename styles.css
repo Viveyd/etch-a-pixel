@@ -119,13 +119,29 @@ main > .workspace{
     margin: 0;
 }
 
-.brush-settings > button {
+.brush-settings input{
     border: 0;
     background-color: transparent;
     padding: 0;
     font-family: 'Monda', sans-serif;
     font-size: 16px;
 } 
+
+.brush-settings input[type="color"]{
+    width: 28px;
+    height: 28px;
+}
+
+.brush-settings input[type="color"]::-webkit-color-swatch{
+    border-radius: 50%;
+    border: 2px solid black;
+
+}
+
+.flex-center-y{
+    display: flex;
+    align-items: center;
+}
 
 
 
