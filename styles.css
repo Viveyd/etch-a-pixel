@@ -24,6 +24,7 @@ main > .main-heading{
     width: 925px;
     margin: 0;
     font-family: 'Limelight', cursive;
+    font-size: 56px;
 }
 
 main > .workspace{
