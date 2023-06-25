@@ -48,6 +48,19 @@ main > .workspace{
 }
 
 
+.github-con{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 32px 0 32px 0;
+
+}
+
+.github-con > img {
+    width: 85px;
+    height: 85px;
+}
+
 .canvas-settings h2, .brush-settings h2{
     margin: 0;
 }
