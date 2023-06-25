@@ -53,14 +53,11 @@ main > .workspace{
 
     main > .main-heading{
         width: 800px;
-        margin: 0;
     }
     
     main > .workspace{
        width: 800px;
        flex-basis: 600px;
-       gap: 25px;
-       display: flex;
     }
     
     .workspace > .canvas{
@@ -73,20 +70,13 @@ main > .workspace{
 }
 
 @media screen and (max-width: 1049px) {
-    body{
-        background-color: #F2003C;
-    }
-
     main > .main-heading{
         width: 650px;
-        margin: 0;
     }
     
     main > .workspace{
        width: 650px;
        flex-basis: 500px;
-       gap: 25px;
-       display: flex;
     }
     
     .workspace > .canvas{
@@ -106,5 +96,75 @@ main > .workspace{
     main{
         height: 80%;
         width: 100%;
+    }
+}
+
+@media screen and (max-width: 689px) {
+    main > .workspace{
+        flex-direction: column-reverse;
+        align-items: center;
+        gap: 10px;
+    }
+
+    main > .main-heading{
+        width: auto;
+
+    }
+
+    .workspace > .canvas{
+        flex-basis: 500px;
+        width: 500px;
+    }
+
+    .workspace > .tools {
+        border-radius: 50px;
+        flex-basis: 50px;
+        width: 515px;
+    }
+}
+
+@media screen and (max-width: 549px) {
+    main > .workspace{
+        width: 400px;
+        flex-direction: column-reverse;
+        align-items: center;
+        justify-content: flex-end;
+    }
+
+    main > .main-heading{
+        width: auto;
+
+    }
+    .workspace > .canvas{
+        flex-basis: 350px;
+        width: 350px;
+    }
+
+    .workspace > .tools {
+        flex-basis: 60px;
+        width: 365px;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    main > .workspace{
+        width: 285px;
+        flex-direction: column-reverse;
+        align-items: center;
+        justify-content: flex-end;
+    }
+
+    main > .main-heading{
+        width: auto;
+
+    }
+    .workspace > .canvas{
+        flex-basis: 270px;
+        width: 270px;
+    }
+
+    .workspace > .tools {
+        flex-basis: 60px;
+        width: 270px;
     }
 }
