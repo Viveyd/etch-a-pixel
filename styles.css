@@ -5,4 +5,42 @@ body{
     height: 100%;
     width: 100%;
     margin: 0;
+    background-color: red;
+    display: flex;
+    justify-content: center;
+
+}
+
+main{
+    height: 100%;
+    width: 80%;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+main > .main-heading{
+    width: 925px;
+    margin: 0;
+}
+
+main > .workspace{
+   width: 925px;
+   flex-basis: 700px;
+   gap: 25px;
+   display: flex;
+}
+
+.workspace > * {
+ background-color: #D9D9D9;
+}
+
+.workspace > .canvas{
+    flex-basis: 700px;
+}
+
+.workspace > .tools{
+    flex-basis: 200px;
 }
