@@ -26,7 +26,7 @@ function paintCell(e){
         if(colorizers[0].classList.contains("selected")){ // Solid
             e.target.style.backgroundColor = document.querySelector(".brush-settings input[type='color']").value;
         } else if(colorizers[1].classList.contains("selected")){ // Changing
-            e.target.style.backgroundColor = getRandomRGB();
+            e.target.style.backgroundColor = getRandomHSL();
         } else if(colorizers[2].classList.contains("selected")){ // ROYGBIV
             const ROYGBIV = [
                 "hsl(0, 100%, 50%)", 
@@ -48,6 +48,11 @@ function paintCell(e){
 function getRandomRGB(){
     const randomNumGen = () => Math.floor((Math.random() * 255) + 0);
     return `rgb(${randomNumGen()},${randomNumGen()},${randomNumGen()})`;
+}
+
+function getRandomHSL(){
+    const randomNumGen = (min,max) => Math.floor((Math.random() * max) + min);
+    return `hsl(${randomNumGen(0, 360)}.${randomNumGen(0, 9)}, ${randomNumGen(0,100)}%, ${randomNumGen(0,100)}%)`;
 }
 
 function soleSelect(e){
