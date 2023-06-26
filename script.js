@@ -22,7 +22,10 @@ function createRow(size){
 
 function paintCell(e){
     if(e.target.classList.contains("canvas-cell") ){
-        e.target.style.backgroundColor = document.querySelector(".brush-settings input[type='color']").value;
+        const colorizers = document.querySelectorAll(".brush-settings input");
+        if(colorizers[0].classList.contains("selected")){ // If solid is selected
+            e.target.style.backgroundColor = document.querySelector(".brush-settings input[type='color']").value;
+        }
     }
 
     // 1.) if solid take value from color input directly (no global value)
