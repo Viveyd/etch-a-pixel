@@ -55,6 +55,20 @@ function getRandomHSL(){
     return `hsl(${randomNumGen(0, 360)}.${randomNumGen(0, 9)}, ${randomNumGen(0,100)}%, ${randomNumGen(0,100)}%)`;
 }
 
+function rgbToHSL(rgb){
+    let trimmedRGB = rgb.slice(4, -1).split(",").map(num => Number(num));
+    const max = Math.max(trimmedRGB);
+}
+
+function hexToRGB(hex){
+    const HEXTABLE = [0,1,2,3,4,5,6,7,8,9,'a','b','c','d','e','f'];
+    let hexArr = [...hex.slice(1)];
+    hexArr = hexArr.map(hexChar => HEXTABLE.indexOf(isNaN(hexChar) ? hexChar.toLowerCase(): Number(hexChar)));
+    console.log(hexArr);
+    const [r,g,b] = [hexArr[0]*16 + hexArr[1], hexArr[2]*16 + hexArr[3], hexArr[4]*16 + hexArr[5]];
+    return `rgb(${r}, ${g}, ${b})`;
+}
+
 function soleSelect(e){
     if(e.target.classList.contains("selected")){
         e.target.classList.remove("selected");
