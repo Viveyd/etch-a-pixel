@@ -27,6 +27,12 @@ function paintCell(e){
             e.target.style.backgroundColor = document.querySelector(".brush-settings input[type='color']").value;
         } else if(colorizers[1].classList.contains("selected")){ // If changing is selected
             e.target.style.backgroundColor = `rgb(${randomRange()}, ${randomRange()}, ${randomRange()})`;
+        } else if(colorizers[2].classList.contains("selected")){ // If changing is selected
+            const ROYGBIV = ["red", "orange", "yellow", "green", "blue", "indigo", "violet"];
+            let dataIndex = Number(colorizers[2].getAttribute("data-index"));
+            if(dataIndex > 6 || dataIndex < 0) dataIndex = 0;
+            e.target.style.backgroundColor = ROYGBIV[dataIndex];
+            colorizers[2].setAttribute("data-index", dataIndex+1);
         } 
     }
 
