@@ -40,6 +40,19 @@ main > .workspace{
 
 .workspace > .canvas{
     flex-basis: 700px;
+    display: flex;
+    flex-direction: column;
+}
+
+.workspace > .canvas .canvas-row{
+    flex-grow: 1;
+    display: flex;
+}
+
+
+.workspace > .canvas .canvas-cell{
+    flex-grow: 1;
+    border: 1px solid black;
 }
 
 .workspace > .tools{
@@ -142,6 +155,8 @@ main > .workspace{
     display: flex;
     align-items: center;
 }
+
+
 
 
 
