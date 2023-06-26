@@ -34,14 +34,18 @@ function paintCell(e){
 }
 
 function soleSelect(e){
-    e.target.classList.add("selected");
-    const toUnselect = [...document.querySelectorAll(".brush-settings input")].filter(el => el !== e.target);
-    toUnselect.forEach(el => el.classList.remove("selected"));
+    if(e.target.classList.contains("selected")){
+        e.target.classList.remove("selected");
+        allowPainting(false);
+    } else{
+        allowPainting(true);
+        e.target.classList.add("selected");
+        const toUnselect = [...document.querySelectorAll(".brush-settings input")].filter(el => el !== e.target);
+        toUnselect.forEach(el => el.classList.remove("selected"));
+    }
 }
 
-//  
-
-function allowPainting(bool = false){
+function allowPainting(bool = true){
     const canvas = document.querySelector(".workspace .canvas");
     if(bool === true) canvas.addEventListener("mouseover", paintCell);
     else canvas.removeEventListener("mouseover", paintCell);
