@@ -23,29 +23,31 @@ function createRow(size){
 function paintCell(e){
     if(e.target.classList.contains("canvas-cell") ){
         const colorizers = document.querySelectorAll(".brush-settings input[type='button']");
-        if(colorizers[0].classList.contains("selected")){ // If solid is selected
+        if(colorizers[0].classList.contains("selected")){ // Solid
             e.target.style.backgroundColor = document.querySelector(".brush-settings input[type='color']").value;
-        } else if(colorizers[1].classList.contains("selected")){ // If changing is selected
-            e.target.style.backgroundColor = `rgb(${randomRange()}, ${randomRange()}, ${randomRange()})`;
-        } else if(colorizers[2].classList.contains("selected")){ // If changing is selected
-            const ROYGBIV = ["red", "orange", "yellow", "green", "blue", "indigo", "violet"];
+        } else if(colorizers[1].classList.contains("selected")){ // Changing
+            e.target.style.backgroundColor = getRandomRGB();
+        } else if(colorizers[2].classList.contains("selected")){ // ROYGBIV
+            const ROYGBIV = [
+                "hsl(0, 100%, 50%)", 
+                "hsl(38.8, 100%, 50%)", 
+                "hsl(60, 100%, 50%)", 
+                "hsl(120, 100%, 50%)", 
+                "hsl(240, 100%, 50%)", 
+                "hsl(274.6, 100%, 25.5%)", 
+                "hsl(273.6, 100%, 50%)"];
             let dataIndex = Number(colorizers[2].getAttribute("data-index"));
             if(dataIndex > 6 || dataIndex < 0) dataIndex = 0;
             e.target.style.backgroundColor = ROYGBIV[dataIndex];
             colorizers[2].setAttribute("data-index", dataIndex+1);
         } 
     }
-
-    // 1.) if solid take value from color input directly (no global value)
-    // 2.) if random, no input needed just generate
-    // 3.) for ROYGBIV array color cycling (arr)
-    // .shift (delete and return color[0]) 
-    // .push (add back deleted to end of queue )
     // 4.) Darkener and Lightener problem can be solved by using hsl
 }
 
-function randomRange(min = 0, max = 255){
-    return Math.floor((Math.random() * max) + min);
+function getRandomRGB(){
+    const randomNumGen = () => Math.floor((Math.random() * 255) + 0);
+    return `rgb(${randomNumGen()},${randomNumGen()},${randomNumGen()})`;
 }
 
 function soleSelect(e){
