@@ -1,12 +1,9 @@
 fillCanvas(document.querySelector(".workspace .canvas"), 50);
 [...document.querySelectorAll(".brush-settings input")].forEach(btn => btn.addEventListener("click", soleSelect));
 
-
-
 function fillCanvas(canvas, size){
     canvas.innerHTML = "";
     canvas.classList.add("canvas");
-    canvas.addEventListener("mouseover", paintCell);
     while(canvas.children.length !== size){
         canvas.appendChild(createRow(size));
     }
@@ -24,7 +21,7 @@ function createRow(size){
 }
 
 function paintCell(e){
-    if(e.target.classList.contains("canvas-cell")){
+    if(e.target.classList.contains("canvas-cell") ){
         e.target.style.backgroundColor = document.querySelector(".brush-settings input[type='color']").value;
     }
 
@@ -40,4 +37,12 @@ function soleSelect(e){
     e.target.classList.add("selected");
     const toUnselect = [...document.querySelectorAll(".brush-settings input")].filter(el => el !== e.target);
     toUnselect.forEach(el => el.classList.remove("selected"));
+}
+
+//  
+
+function allowPainting(bool = false){
+    const canvas = document.querySelector(".workspace .canvas");
+    if(bool === true) canvas.addEventListener("mouseover", paintCell);
+    else canvas.removeEventListener("mouseover", paintCell);
 }
