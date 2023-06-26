@@ -26,20 +26,25 @@ function paintCell(e){
         if(colorizers[0].classList.contains("selected")){ // Solid
             e.target.style.backgroundColor = document.querySelector(".brush-settings input[type='color']").value;
         } else if(colorizers[1].classList.contains("selected")){ // Changing
-            e.target.style.backgroundColor = getRandomHSL();
+            e.target.style.backgroundColor = getRandomRGB();
         } else if(colorizers[2].classList.contains("selected")){ // ROYGBIV
             const ROYGBIV = [
-                "hsl(0, 100%, 50%)", 
-                "hsl(38.8, 100%, 50%)", 
-                "hsl(60, 100%, 50%)", 
-                "hsl(120, 100%, 50%)", 
-                "hsl(240, 100%, 50%)", 
-                "hsl(274.6, 100%, 25.5%)", 
-                "hsl(273.6, 100%, 50%)"];
+                "rgb(255, 0 , 0)", 
+                "rgb(255, 127, 0)", 
+                "rgb(255, 255, 0)", 
+                "rgb(0, 255, 0)", 
+                "rgb(0, 0, 255)", 
+                "rgb(75, 0, 130)", 
+                "rgb(148, 0, 211)"];
             let dataIndex = Number(colorizers[2].getAttribute("data-index"));
             if(dataIndex > 6 || dataIndex < 0) dataIndex = 0;
             e.target.style.backgroundColor = ROYGBIV[dataIndex];
             colorizers[2].setAttribute("data-index", dataIndex+1);
+        } else if(colorizers[3].classList.contains("selected")){ // Darkener
+
+
+        } else if(colorizers[4].classList.contains("selected")){ // Lightener
+
         } 
     }
     // 4.) Darkener and Lightener problem can be solved by using hsl
