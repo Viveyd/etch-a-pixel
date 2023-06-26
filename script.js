@@ -28,17 +28,9 @@ function paintCell(e){
         } else if(colorizers[1].classList.contains("selected")){ // Changing
             e.target.style.backgroundColor = getRandomRGB();
         } else if(colorizers[2].classList.contains("selected")){ // ROYGBIV
-            const ROYGBIV = [
-                "rgb(255, 0 , 0)", 
-                "rgb(255, 127, 0)", 
-                "rgb(255, 255, 0)", 
-                "rgb(0, 255, 0)", 
-                "rgb(0, 0, 255)", 
-                "rgb(75, 0, 130)", 
-                "rgb(148, 0, 211)"];
             let dataIndex = Number(colorizers[2].getAttribute("data-index"));
             if(dataIndex > 6 || dataIndex < 0) dataIndex = 0;
-            e.target.style.backgroundColor = ROYGBIV[dataIndex];
+            e.target.style.backgroundColor = getROYGBIV(dataIndex);
             colorizers[2].setAttribute("data-index", dataIndex+1);
         } else if(colorizers[3].classList.contains("selected")){ // Darkener
 
@@ -48,6 +40,18 @@ function paintCell(e){
         } 
     }
     // 4.) Darkener and Lightener problem can be solved by using hsl
+}
+
+function getROYGBIV(index){
+    const ref = [
+        "rgb(255, 0 , 0)", 
+        "rgb(255, 127, 0)", 
+        "rgb(255, 255, 0)", 
+        "rgb(0, 255, 0)", 
+        "rgb(0, 0, 255)", 
+        "rgb(75, 0, 130)", 
+        "rgb(148, 0, 211)"];
+    return ref[index];
 }
 
 function getRandomRGB(){
