@@ -22,10 +22,12 @@ function createRow(size){
 
 function paintCell(e){
     if(e.target.classList.contains("canvas-cell") ){
-        const colorizers = document.querySelectorAll(".brush-settings input");
+        const colorizers = document.querySelectorAll(".brush-settings input[type='button']");
         if(colorizers[0].classList.contains("selected")){ // If solid is selected
             e.target.style.backgroundColor = document.querySelector(".brush-settings input[type='color']").value;
-        }
+        } else if(colorizers[1].classList.contains("selected")){ // If changing is selected
+            e.target.style.backgroundColor = `rgb(${randomRange()}, ${randomRange()}, ${randomRange()})`;
+        } 
     }
 
     // 1.) if solid take value from color input directly (no global value)
@@ -34,6 +36,10 @@ function paintCell(e){
     // .shift (delete and return color[0]) 
     // .push (add back deleted to end of queue )
     // 4.) Darkener and Lightener problem can be solved by using hsl
+}
+
+function randomRange(min = 0, max = 255){
+    return Math.floor((Math.random() * max) + min);
 }
 
 function soleSelect(e){
