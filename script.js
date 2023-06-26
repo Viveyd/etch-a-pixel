@@ -33,10 +33,13 @@ function paintCell(e){
             e.target.style.backgroundColor = getROYGBIV(dataIndex);
             colorizers[2].setAttribute("data-index", dataIndex+1);
         } else if(colorizers[3].classList.contains("selected")){ // Darkener
-
-
+            const oldColor = e.target.style.backgroundColor;
+            const [h, s, l] = oldColor === "" ? [0, 0, 85] : rgb2hsl(...oldColor.slice(4, -1).split(", ").map(val => Number(val)));
+            e.target.style.backgroundColor = `hsl(${h}, ${s}%, ${l >= 10 ? l-10: 0}%)`;
         } else if(colorizers[4].classList.contains("selected")){ // Lightener
-
+            const oldColor = e.target.style.backgroundColor;
+            const [h, s, l] = oldColor === "" ? [0, 0, 85] : rgb2hsl(...oldColor.slice(4, -1).split(", ").map(val => Number(val)));
+            e.target.style.backgroundColor = `hsl(${h}, ${s}%, ${l <= 90 ? l+10: 100}%)`;
         } 
     }
     // 4.) Darkener and Lightener problem can be solved by using hsl
