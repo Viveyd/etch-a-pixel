@@ -1,6 +1,9 @@
+fillCanvas(document.querySelector(".workspace .canvas"), 50);
+
 function fillCanvas(canvas, size){
     canvas.innerHTML = "";
-    canvas.classList.add("canvas")
+    canvas.classList.add("canvas");
+    canvas.addEventListener("mouseover", paintCell);
     while(canvas.children.length !== size){
         canvas.appendChild(createRow(size));
     }
@@ -18,7 +21,7 @@ function createRow(size){
 }
 
 function paintCell(e){
-    if(e.target.classList.contains("cell")){
+    if(e.target.classList.contains("canvas-cell")){
         e.target.style.backgroundColor = document.querySelector(".brush-settings input[type='color']").value;
     }
 
