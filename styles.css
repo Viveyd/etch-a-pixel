@@ -160,6 +160,9 @@ main > .workspace{
     align-items: center;
 }
 
+.selected{
+    color: #F2003C;
+}
 
 
 

@@ -1,4 +1,7 @@
 fillCanvas(document.querySelector(".workspace .canvas"), 50);
+[...document.querySelectorAll(".brush-settings input")].forEach(btn => btn.addEventListener("click", soleSelect));
+
+
 
 function fillCanvas(canvas, size){
     canvas.innerHTML = "";
@@ -31,4 +34,10 @@ function paintCell(e){
     // .shift (delete and return color[0]) 
     // .push (add back deleted to end of queue )
     // 4.) Darkener and Lightener problem can be solved by using hsl
+}
+
+function soleSelect(e){
+    e.target.classList.add("selected");
+    const toUnselect = [...document.querySelectorAll(".brush-settings input")].filter(el => el !== e.target);
+    toUnselect.forEach(el => el.classList.remove("selected"));
 }
