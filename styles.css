@@ -151,6 +151,10 @@ main > .workspace{
 
 }
 
+.brush-settings input:hover{
+    color: #F2003C;
+} 
+
 .flex-center-y{
     display: flex;
     align-items: center;
