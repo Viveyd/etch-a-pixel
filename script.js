@@ -55,11 +55,6 @@ function getRandomRGB(){
     return `rgb(${randomNumGen()},${randomNumGen()},${randomNumGen()})`;
 }
 
-function getRandomHSL(){
-    const randomNumGen = (min,max) => Math.floor((Math.random() * max) + min);
-    return `hsl(${randomNumGen(0, 360)}.${randomNumGen(0, 9)}, ${randomNumGen(0,100)}%, ${randomNumGen(0,100)}%)`;
-}
-
 function rgbToHSL(rgb){
     let trimmedRGB = rgb.slice(4, -1).split(",").map(num => Number(num)/255);
     const max = trimmedRGB.indexOf(Math.max(trimmedRGB));
