@@ -52,7 +52,6 @@ main > .workspace{
 
 .workspace > .canvas .canvas-cell{
     flex-grow: 1;
-    border: 1px solid black;
 }
 
 .workspace > .tools{
@@ -172,6 +171,10 @@ main > .workspace{
 
 .selected{
     color: #F2003C;
+}
+
+.bordered{
+    border: 1px solid black;
 }
 
 

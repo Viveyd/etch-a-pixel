@@ -14,6 +14,12 @@ document.querySelector(".size-con .controls .decrease").addEventListener("mouseu
 document.querySelector(".size-con .controls .decrease").addEventListener("mouseout", stopResize);
 
 document.querySelector(".canvas-settings .color-con input").addEventListener("change", changeCanvasBG);
+document.querySelector(".canvas-settings .line-toggle").addEventListener("click", toggleLines);
+
+function toggleLines(){
+    const cells = document.querySelector(".workspace .canvas").querySelectorAll(".canvas-cell");
+    [...cells].forEach(cell => cell.classList.toggle("bordered"));
+}
 
 function changeCanvasBG(e){
     document.querySelector(".workspace .canvas").style.backgroundColor = e.target.value;
@@ -78,7 +84,7 @@ function createRow(size){
     row.classList.add("canvas-row")
     while(row.children.length !== size){
         let cell = document.createElement("div");
-        cell.classList.add("canvas-cell")
+        cell.classList.add("canvas-cell", "bordered")
         row.appendChild(cell);
     }
     return row;
