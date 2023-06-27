@@ -13,6 +13,12 @@ document.querySelector(".size-con .controls .decrease").addEventListener("moused
 document.querySelector(".size-con .controls .decrease").addEventListener("mouseup", stopResize);
 document.querySelector(".size-con .controls .decrease").addEventListener("mouseout", stopResize);
 
+document.querySelector(".canvas-settings .color-con input").addEventListener("change", changeCanvasBG);
+
+function changeCanvasBG(e){
+    document.querySelector(".workspace .canvas").style.backgroundColor = e.target.value;
+}
+
 function increaseCanvasSize(){
     let currentSize = document.querySelector(".canvas-row").childElementCount;
     if(currentSize <= 99){
