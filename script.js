@@ -94,7 +94,7 @@ function rgb2hsl(r, g, b) {
             case r:
                 // hue = (g - b) / c;
                 // hue = ((g - b) / c) % 6;
-                // hue = (g - b) / c + (g < b ? 6 : 0);
+                hue = (g - b) / c + (g < b ? 6 : 0);
                 break;
             case g:
                 hue = (b - r) / c + 2;
