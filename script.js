@@ -16,9 +16,15 @@ document.querySelector(".size-con .controls .decrease").addEventListener("mouseo
 document.querySelector(".canvas-settings .color-con input").addEventListener("change", changeCanvasBG);
 document.querySelector(".canvas-settings .line-toggle").addEventListener("click", toggleLines);
 
-function toggleLines(){
+function toggleLines(e){
     const cells = document.querySelector(".workspace .canvas").querySelectorAll(".canvas-cell");
-    [...cells].forEach(cell => cell.classList.toggle("bordered"));
+    if(e.target.getAttribute("data-state") === "lined"){
+        [...cells].forEach(cell => cell.classList.remove("bordered"));
+        e.target.setAttribute("data-state", "unlined");
+    } else {
+        [...cells].forEach(cell => cell.classList.add("bordered"));
+        e.target.setAttribute("data-state", "lined");
+    }
 }
 
 function changeCanvasBG(e){
@@ -31,6 +37,7 @@ function increaseCanvasSize(){
         [... document.querySelectorAll(".canvas-row")].forEach((row) => {
             let cell = document.createElement("div");
             cell.classList.add("canvas-cell")
+            if(document.querySelector(".canvas-settings .line-toggle").getAttribute("data-state") === "lined") cell.classList.add("bordered");
             row.appendChild(cell);        
         })
         document.querySelector(".workspace .canvas").appendChild(createRow(currentSize+1));
@@ -84,7 +91,9 @@ function createRow(size){
     row.classList.add("canvas-row")
     while(row.children.length !== size){
         let cell = document.createElement("div");
-        cell.classList.add("canvas-cell", "bordered")
+        cell.classList.add("canvas-cell")
+        if(document.querySelector(".canvas-settings .line-toggle").getAttribute("data-state") === "lined") cell.classList.add("bordered");
+
         row.appendChild(cell);
     }
     return row;
