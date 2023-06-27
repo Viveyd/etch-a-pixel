@@ -1,6 +1,31 @@
 fillCanvas(document.querySelector(".workspace .canvas"), 50);
 [...document.querySelectorAll(".brush-settings input")].forEach(btn => btn.addEventListener("click", soleSelect));
-document.querySelector(".size.display").te
+document.querySelector(".size-con .controls .increase").addEventListener("click", increaseCanvasSize)
+document.querySelector(".size-con .controls .decrease").addEventListener("click", decreaseCanvasSize)
+
+function increaseCanvasSize(){
+    let currentSize = document.querySelector(".canvas-row").childElementCount;
+    if(currentSize <= 99){
+        [... document.querySelectorAll(".canvas-row")].forEach((row) => {
+            let cell = document.createElement("div");
+            cell.classList.add("canvas-cell")
+            row.appendChild(cell);        
+        })
+        document.querySelector(".workspace .canvas").appendChild(createRow(currentSize+1));
+        document.querySelector(".size-con .display").textContent = currentSize+1;
+    }
+}
+
+function decreaseCanvasSize(){
+    let currentSize = document.querySelector(".canvas-row").childElementCount;
+    if(currentSize >= 2){
+        [... document.querySelectorAll(".canvas-row")].forEach((row) => {
+            row.removeChild(row.lastElementChild);        
+        })
+        document.querySelector(".workspace .canvas").removeChild(document.querySelector(".workspace .canvas").lastElementChild);
+        document.querySelector(".size-con .display").textContent = currentSize-1;
+    }
+}
 
 function fillCanvas(canvas, size){
     canvas.innerHTML = "";
