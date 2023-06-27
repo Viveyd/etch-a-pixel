@@ -1,5 +1,6 @@
 fillCanvas(document.querySelector(".workspace .canvas"), 50);
 [...document.querySelectorAll(".brush-settings input")].forEach(btn => btn.addEventListener("click", soleSelect));
+document.querySelector(".size.display").te
 
 function fillCanvas(canvas, size){
     canvas.innerHTML = "";
@@ -42,7 +43,6 @@ function paintCell(e){
             e.target.style.backgroundColor = `hsl(${h}, ${s}%, ${l <= 90 ? l+10: 100}%)`;
         } 
     }
-    // 4.) Darkener and Lightener problem can be solved by using hsl
 }
 
 function getROYGBIV(index){
