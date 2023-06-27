@@ -1,7 +1,17 @@
+let interval, timeout;
+
 fillCanvas(document.querySelector(".workspace .canvas"), 50);
 [...document.querySelectorAll(".brush-settings input")].forEach(btn => btn.addEventListener("click", soleSelect));
-document.querySelector(".size-con .controls .increase").addEventListener("click", increaseCanvasSize)
-document.querySelector(".size-con .controls .decrease").addEventListener("click", decreaseCanvasSize)
+
+document.querySelector(".size-con .controls .increase").addEventListener("mousedown", increaseCanvasSize);
+document.querySelector(".size-con .controls .increase").addEventListener("mousedown", holdIncrease);
+document.querySelector(".size-con .controls .increase").addEventListener("mouseup", stopResize);
+document.querySelector(".size-con .controls .increase").addEventListener("mouseout", stopResize);
+
+document.querySelector(".size-con .controls .decrease").addEventListener("mousedown", decreaseCanvasSize);
+document.querySelector(".size-con .controls .decrease").addEventListener("mousedown", holdDecrease);
+document.querySelector(".size-con .controls .decrease").addEventListener("mouseup", stopResize);
+document.querySelector(".size-con .controls .decrease").addEventListener("mouseout", stopResize);
 
 function increaseCanvasSize(){
     let currentSize = document.querySelector(".canvas-row").childElementCount;
@@ -25,6 +35,28 @@ function decreaseCanvasSize(){
         document.querySelector(".workspace .canvas").removeChild(document.querySelector(".workspace .canvas").lastElementChild);
         document.querySelector(".size-con .display").textContent = currentSize-1;
     }
+}
+
+function holdIncrease(){
+    timeout = setTimeout(() => {
+        if(interval === null || interval === undefined){
+            interval = setInterval(increaseCanvasSize, 100)
+        }
+    }, 150)
+}
+
+function holdDecrease(){
+    timeout = setTimeout(() => {
+        if(interval === undefined || interval === null){
+            interval = setInterval(decreaseCanvasSize, 100)
+        }
+    }, 150)
+}
+
+function stopResize(){
+    clearInterval(interval);
+    clearTimeout(timeout);
+    interval = null;
 }
 
 function fillCanvas(canvas, size){
