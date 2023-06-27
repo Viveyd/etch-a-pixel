@@ -15,6 +15,12 @@ document.querySelector(".size-con .controls .decrease").addEventListener("mouseo
 
 document.querySelector(".canvas-settings .color-con input").addEventListener("change", changeCanvasBG);
 document.querySelector(".canvas-settings .line-toggle").addEventListener("click", toggleLines);
+document.querySelector(".canvas-settings .reset-canvas").addEventListener("click", resetCanvas);
+
+function resetCanvas(){
+    fillCanvas(document.querySelector(".workspace .canvas"), 50);
+    document.querySelector(".size-con .display").textContent = 50;
+}
 
 function toggleLines(e){
     const cells = document.querySelector(".workspace .canvas").querySelectorAll(".canvas-cell");
