@@ -108,30 +108,50 @@ function createRow(size){
 function paintCell(e){
     if(e.target.classList.contains("canvas-cell") ){
         const colorizers = document.querySelectorAll(".brush-settings input[type='button']");
-        if(colorizers[0].classList.contains("selected")){ // Solid
-            e.target.style.backgroundColor = document.querySelector(".brush-settings input[type='color']").value;
-            e.target.setAttribute("data-lightness", rgbStrToLightness(e.target.style.backgroundColor)); 
-        } else if(colorizers[1].classList.contains("selected")){ // Changing
-            e.target.style.backgroundColor = getRandomRGB();
-            e.target.setAttribute("data-lightness", rgbStrToLightness(e.target.style.backgroundColor)); 
-        } else if(colorizers[2].classList.contains("selected")){ // ROYGBIV
-            let dataIndex = Number(colorizers[2].getAttribute("data-index"));
-            if(dataIndex > 6 || dataIndex < 0) dataIndex = 0;
-            e.target.style.backgroundColor = getROYGBIV(dataIndex);
-            colorizers[2].setAttribute("data-index", dataIndex+1);
-            e.target.setAttribute("data-lightness", rgbStrToLightness(e.target.style.backgroundColor)); 
-        } else if(colorizers[3].classList.contains("selected")){ // Darkener
-            const oldColor = e.target.style.backgroundColor;
-            const [h, s, l] = oldColor === "" ? "" : rgb2hsl(...oldColor.slice(4, -1).split(", ").map(val => Number(val)));
-            const baseL = Math.floor(Number(e.target.getAttribute("data-lightness"))/10);
-            e.target.style.backgroundColor = `hsl(${h}, ${s}%, ${l >= baseL ? l - baseL: 0}%)`;
-        } else if(colorizers[4].classList.contains("selected")){ // Lightener
-            const oldColor = e.target.style.backgroundColor;
-            const [h, s, l] = oldColor === "" ? "" : rgb2hsl(...oldColor.slice(4, -1).split(", ").map(val => Number(val)));
-            const baseL = Math.floor(Number(e.target.getAttribute("data-lightness"))/10);
-            e.target.style.backgroundColor = `hsl(${h}, ${s}%, ${l <= (100-baseL) ? l+baseL: 100}%)`;
+        if(colorizers[0].classList.contains("selected")){
+            colorSolidly(e.target)
+        } else if(colorizers[1].classList.contains("selected")){
+            colorRandomly(e.target);
+        } else if(colorizers[2].classList.contains("selected")){
+            colorRainbowly(e.target);
+        } else if(colorizers[3].classList.contains("selected")){
+            darken(e.target);
+        } else if(colorizers[4].classList.contains("selected")){
+            lighten(e.target);
         } 
     }
+}
+function colorSolidly(targetCell){
+    targetCell.style.backgroundColor = document.querySelector(".brush-settings input[type='color']").value;
+    targetCell.setAttribute("data-lightness", rgbStrToLightness(targetCell.style.backgroundColor)); 
+}
+
+function colorRandomly(targetCell){
+    targetCell.style.backgroundColor = getRandomRGB();
+    targetCell.setAttribute("data-lightness", rgbStrToLightness(targetCell.style.backgroundColor)); 
+}
+
+function colorRainbowly(targetCell){
+    let rainbowBtn = document.querySelector(".brush-settings > ul > li:nth-child(3) > input[type=button]");
+    let dataIndex = Number(rainbowBtn.getAttribute("data-index"));
+    if(dataIndex > 6 || dataIndex < 0) dataIndex = 0;
+    targetCell.style.backgroundColor = getROYGBIV(dataIndex);
+    rainbowBtn.setAttribute("data-index", dataIndex+1);
+    targetCell.setAttribute("data-lightness", rgbStrToLightness(targetCell.style.backgroundColor)); 
+}
+
+function darken(targetCell){
+    const oldColor = targetCell.style.backgroundColor;
+    const [h, s, l] = oldColor === "" ? "" : rgb2hsl(...oldColor.slice(4, -1).split(", ").map(val => Number(val)));
+    const baseL = Math.floor(Number(targetCell.getAttribute("data-lightness"))/10);
+    targetCell.style.backgroundColor = `hsl(${h}, ${s}%, ${l >= baseL ? l - baseL: 0}%)`;
+}
+
+function lighten(targetCell){
+    const oldColor = targetCell.style.backgroundColor;
+    const [h, s, l] = oldColor === "" ? "" : rgb2hsl(...oldColor.slice(4, -1).split(", ").map(val => Number(val)));
+    const baseL = Math.floor(Number(targetCell.getAttribute("data-lightness"))/10);
+    targetCell.style.backgroundColor = `hsl(${h}, ${s}%, ${l <= (100-baseL) ? l+baseL: 100}%)`;
 }
 
 function rgbStrToLightness(rgbStr){
