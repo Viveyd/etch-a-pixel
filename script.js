@@ -110,23 +110,38 @@ function paintCell(e){
         const colorizers = document.querySelectorAll(".brush-settings input[type='button']");
         if(colorizers[0].classList.contains("selected")){ // Solid
             e.target.style.backgroundColor = document.querySelector(".brush-settings input[type='color']").value;
+            e.target.setAttribute("data-lightness", rgbStrToLightness(e.target.style.backgroundColor)); 
         } else if(colorizers[1].classList.contains("selected")){ // Changing
             e.target.style.backgroundColor = getRandomRGB();
+            e.target.setAttribute("data-lightness", rgbStrToLightness(e.target.style.backgroundColor)); 
         } else if(colorizers[2].classList.contains("selected")){ // ROYGBIV
             let dataIndex = Number(colorizers[2].getAttribute("data-index"));
             if(dataIndex > 6 || dataIndex < 0) dataIndex = 0;
             e.target.style.backgroundColor = getROYGBIV(dataIndex);
             colorizers[2].setAttribute("data-index", dataIndex+1);
+            e.target.setAttribute("data-lightness", rgbStrToLightness(e.target.style.backgroundColor)); 
         } else if(colorizers[3].classList.contains("selected")){ // Darkener
             const oldColor = e.target.style.backgroundColor;
             const [h, s, l] = oldColor === "" ? "" : rgb2hsl(...oldColor.slice(4, -1).split(", ").map(val => Number(val)));
-            e.target.style.backgroundColor = `hsl(${h}, ${s}%, ${l >= 10 ? l-10: 0}%)`;
+            const baseL = Math.floor(Number(e.target.getAttribute("data-lightness"))/10);
+            e.target.style.backgroundColor = `hsl(${h}, ${s}%, ${l >= baseL ? l - baseL: 0}%)`;
         } else if(colorizers[4].classList.contains("selected")){ // Lightener
             const oldColor = e.target.style.backgroundColor;
             const [h, s, l] = oldColor === "" ? "" : rgb2hsl(...oldColor.slice(4, -1).split(", ").map(val => Number(val)));
-            e.target.style.backgroundColor = `hsl(${h}, ${s}%, ${l <= 90 ? l+10: 100}%)`;
+            const baseL = Math.floor(Number(e.target.getAttribute("data-lightness"))/10);
+            e.target.style.backgroundColor = `hsl(${h}, ${s}%, ${l <= (100-baseL) ? l+baseL: 100}%)`;
         } 
     }
+}
+
+function rgbStrToLightness(rgbStr){
+    let [r,g,b] = rgbStr.slice(4, -1).split(", ");
+    r = Number(r) / 255,
+    g = Number(g) / 255,
+    b = Number(b) / 255;
+    const max = Math.max(r, g, b);
+    const min = Math.min(r, g, b);
+    return Math.round(((max + min) / 2) * 100)
 }
 
 function getROYGBIV(index){
@@ -154,30 +169,22 @@ function rgbToHSL(rgb){
 }
 
 function rgb2hsl(r, g, b) {
-    // see https://en.wikipedia.org/wiki/HSL_and_HSV#Formal_derivation
-    // convert r,g,b [0,255] range to [0,1]
     r = r / 255,
     g = g / 255,
     b = b / 255;
-    // get the min and max of r,g,b
     var max = Math.max(r, g, b);
     var min = Math.min(r, g, b);
-    // lightness is the average of the largest and smallest color components
     var lum = (max + min) / 2;
     var hue;
     var sat;
-    if (max == min) { // no saturation
+    if (max == min) { 
         hue = 0;
         sat = 0;
     } else {
-        var c = max - min; // chroma
-        // saturation is simply the chroma scaled to fill
-        // the interval [0, 1] for every combination of hue and lightness
+        var c = max - min;
         sat = c / (1 - Math.abs(2 * lum - 1));
         switch(max) {
             case r:
-                // hue = (g - b) / c;
-                // hue = ((g - b) / c) % 6;
                 hue = (g - b) / c + (g < b ? 6 : 0);
                 break;
             case g:
