@@ -5,14 +5,14 @@ body{
     height: 100%;
     width: 100%;
     margin: 0;
-    background-color: #F2003C;
     display: flex;
     justify-content: center;
+    align-items: center;
 }
 
 main{
     height: 100%;
-    width: 80%;
+    width: 100%;
     background-color: white;
     display: flex;
     flex-direction: column;
@@ -177,129 +177,9 @@ main > .workspace{
     border: 1px solid black;
 }
 
-
-
-
-
-@media screen and (max-width: 1199px) {
-    body{
-        background-color: #F2003C;
-    }
-
-    main > .main-heading{
-        width: 800px;
-    }
-    
-    main > .workspace{
-       width: 800px;
-       flex-basis: 600px;
-    }
-    
-    .workspace > .canvas{
-        flex-basis: 600px;
-    }
-    
-    .workspace > .tools{
-        flex-basis: 200px;
-    }
-}
-
-@media screen and (max-width: 1049px) {
-    main > .main-heading{
-        width: 650px;
-    }
-    
-    main > .workspace{
-       width: 650px;
-       flex-basis: 500px;
-    }
-    
-    .workspace > .canvas{
-        flex-basis: 500px;
-    }
-    
-    .workspace > .tools{
-        flex-basis: 150px;
-    }
-}
-
-@media screen and (max-width: 879px) {
-    body{
-        background-color: #F2003C;
-        align-items: center;
-    }
-    main{
-        height: 80%;
-        width: 100%;
-    }
-}
-
-@media screen and (max-width: 689px) {
-    main > .workspace{
-        flex-direction: column-reverse;
-        align-items: center;
-        gap: 10px;
-    }
-
-    main > .main-heading{
-        width: auto;
-
-    }
-
-    .workspace > .canvas{
-        flex-basis: 500px;
-        width: 500px;
-    }
-
-    .workspace > .tools {
-        border-radius: 50px;
-        flex-basis: 50px;
-        width: 515px;
-    }
-}
-
-@media screen and (max-width: 549px) {
-    main > .workspace{
-        width: 400px;
-        flex-direction: column-reverse;
-        align-items: center;
-        justify-content: flex-end;
-    }
-
-    main > .main-heading{
-        width: auto;
-
-    }
-    .workspace > .canvas{
-        flex-basis: 350px;
-        width: 350px;
-    }
-
-    .workspace > .tools {
-        flex-basis: 60px;
-        width: 365px;
-    }
-}
-
-@media screen and (max-width: 400px) {
-    main > .workspace{
-        width: 285px;
-        flex-direction: column-reverse;
-        align-items: center;
-        justify-content: flex-end;
-    }
-
-    main > .main-heading{
-        width: auto;
-
-    }
-    .workspace > .canvas{
-        flex-basis: 270px;
-        width: 270px;
-    }
-
-    .workspace > .tools {
-        flex-basis: 60px;
-        width: 270px;
+@media screen and (max-width: 979px) {
+    main .workspace{
+        width: 700px;
+        flex-basis: 466px;
     }
 }
